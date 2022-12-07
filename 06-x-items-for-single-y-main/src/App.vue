@@ -7,7 +7,7 @@
         <ItemSelect />
         <ItemSelect />
       </div>
-      <ComparisonSummary />
+      <ComparisonSummary v-if="comparison.length === 2" />
     </template>
   </div>
 </template>
