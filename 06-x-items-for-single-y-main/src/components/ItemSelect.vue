@@ -4,6 +4,7 @@
     <option 
       v-for="product in products"
       :key="product.id" 
+      :value="product"
     >
       {{ product.title }} - ${{ product.price }}
     </option>
@@ -12,8 +13,14 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import { useItemComparison } from '@/composables/itemComparison';
 
 const { products, comparison } = useItemComparison();
 const selected = ref();
+
+watch(selected, (newValue, oldValue) => {
+  comparison.value = comparison.value.filter(item => item.id !== oldValue?.id);
+  comparison.value.push(newValue);
+})
 
 </script>
