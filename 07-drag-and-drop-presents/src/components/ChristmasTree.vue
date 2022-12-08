@@ -1,13 +1,3 @@
-<!-- You shouldn't need to update this file -->
-<script setup lang="ts">
-import Tree from '@/assets/tree.svg?component'
-import ChristmasPresent from './ChristmasPresent.vue'
-
-defineProps<{
-  presents: string[]
-}>()
-</script>
-
 <template>
   <div class="relative flex justify-center">
     <Tree class="w-64" />
@@ -16,6 +6,15 @@ defineProps<{
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import Tree from '@/assets/tree.svg?component'
+import ChristmasPresent from './ChristmasPresent.vue'
+
+defineProps<{
+  presents: string[]
+}>()
+</script>
 
 <style scoped>
 /* Styles the middle present slightly in front of the other two */

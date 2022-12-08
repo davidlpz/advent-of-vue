@@ -1,20 +1,3 @@
-<script setup lang="ts">
-import ChristmasPresent from './components/ChristmasPresent.vue'
-import ChristmasTree from './components/ChristmasTree.vue'
-import { ref } from 'vue'
-
-const presents = ref(['small-red-gift', 'blue-gift', 'tall-red-gift'])
-const underTheTree = ref([])
-
-const startDrag = (evt, index) => {
-  // TODO
-}
-
-const onDrop = evt => {
-  // TODO
-}
-</script>
-
 <template>
   <div class="flex flex-col items-center mt-24 min-h-screen w-full">
     <h1 class="mt-8 text-xl font-bold">Drag the presents under the tree!</h1>
@@ -28,3 +11,20 @@ const onDrop = evt => {
     </div>
   </div>
 </template>
+
+<script setup>
+import ChristmasPresent from './components/ChristmasPresent.vue';
+import ChristmasTree from './components/ChristmasTree.vue';
+import { ref } from 'vue';
+
+const presents = ref(['small-red-gift', 'blue-gift', 'tall-red-gift'])
+const underTheTree = ref([])
+
+const startDrag = (evt, index) => {
+  // TODO
+}
+
+const onDrop = evt => {
+  // TODO
+}
+</script>
