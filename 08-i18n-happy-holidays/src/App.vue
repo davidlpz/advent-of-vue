@@ -7,29 +7,38 @@
         <span class="i-twemoji-world-map"></span>
       </div>
       
-      <!-- Dates - Check out locales/en.json for the key -->
+      {{ $t('christmasIsComing',  { date: d(christmasDate, 'long') }) }}
+      <span class="font-medium text-green-600">
+        {{ t('day', days) }}
+      </span>
+
       <button class="icon-button" @click="nextLang()">       
         <span class="i-carbon-language" />
       </button>
-      <!-- Flags - the current locale -->
+      
       {{ locale }}
     </section>
   </main>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n';
-const { locale, availableLocales } = useI18n();
+const { t, d, locale, availableLocales } = useI18n();
 
 const nextLang = () => {
   const index = availableLocales.findIndex(elem => elem === locale.value);
   locale.value = availableLocales[(index + 1) % availableLocales.length];
 }
 
+const days = computed(() => {
+  return Math.trunc((christmasDate.getTime() - new Date()) / (1000*60*60*24));
+});
+
 // See the README about tricky timezone issues!
 // I figured since this is i18n-friendly, we'd wanna
 // make sure the timezones were right :-)
-const christmasDate = new Date('2022/12/25')
+const christmasDate = new Date('2022/12/25');
 </script>
 
 <style scoped>
