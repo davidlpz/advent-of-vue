@@ -3,18 +3,28 @@
     <section class="flex flex-col items-center leading-loose text-center">
       <div class="text-3xl">
         <span class="i-twemoji-christmas-tree"></span>
-        Happy Holidays!
+        {{ $t('happyHolidays') }}
         <span class="i-twemoji-world-map"></span>
       </div>
+      
       <!-- Dates - Check out locales/en.json for the key -->
-      <!-- Controls - I give you an .icon-button class if you want to use it -->
+      <button class="icon-button" @click="nextLang()">       
+        <span class="i-carbon-language" />
+      </button>
       <!-- Flags - the current locale -->
+      {{ locale }}
     </section>
   </main>
 </template>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
+const { locale, availableLocales } = useI18n();
+
+const nextLang = () => {
+  const index = availableLocales.findIndex(elem => elem === locale.value);
+  locale.value = availableLocales[(index + 1) % availableLocales.length];
+}
 
 // See the README about tricky timezone issues!
 // I figured since this is i18n-friendly, we'd wanna
