@@ -32,7 +32,7 @@ const nextLang = () => {
 }
 
 const days = computed(() => {
-  return Math.trunc((christmasDate.getTime() - new Date()) / (1000*60*60*24));
+  return Math.ceil((christmasDate.getTime() - new Date()) / (1000 * 60 * 60 * 24));
 });
 
 // See the README about tricky timezone issues!
