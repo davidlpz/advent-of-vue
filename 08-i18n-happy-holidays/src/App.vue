@@ -7,16 +7,23 @@
         <span class="i-twemoji-world-map"></span>
       </div>
       
-      {{ $t('christmasIsComing',  { date: d(christmasDate, 'long') }) }}
-      <span class="font-medium text-green-600">
-        {{ t('day', days) }}
+      <span>
+        {{ $t('christmasIsComing',  { date: d(christmasDate, 'long') }) }}
+        <span class="font-medium text-green-600">
+          {{ $t('day', days) }}
+        </span>
       </span>
 
-      <button class="icon-button" @click="nextLang()">       
-        <span class="i-carbon-language" />
-      </button>
-      
-      {{ locale }}
+      <div class="flex items-center justify-between w-200px">
+        <button class="icon-button" @click="nextLang()">       
+          <span class="i-carbon-language" />
+        </button>
+        
+        <div>
+          <span :class="flags[locale]"></span>
+          {{ $t('language') }}
+        </div>
+      </div>
     </section>
   </main>
 </template>
@@ -25,6 +32,12 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n';
 const { t, d, locale, availableLocales } = useI18n();
+
+const flags = {
+  en: 'i-twemoji-flag-united-states',
+  de: 'i-twemoji-flag-germany',
+  'ja-JP': 'i-twemoji-flag-japan',
+}
 
 const nextLang = () => {
   const index = availableLocales.findIndex(elem => elem === locale.value);
@@ -35,9 +48,6 @@ const days = computed(() => {
   return Math.ceil((christmasDate.getTime() - new Date()) / (1000 * 60 * 60 * 24));
 });
 
-// See the README about tricky timezone issues!
-// I figured since this is i18n-friendly, we'd wanna
-// make sure the timezones were right :-)
 const christmasDate = new Date('2022/12/25');
 </script>
 
