@@ -7,6 +7,12 @@
       <template #ornaments>
         <slot name="ornaments" />
       </template>
+      <template v-if="$slots.even" #even>
+        <slot name="even" />
+      </template>
+      <template v-if="$slots.odd" #odd>
+        <slot name="odd" />
+      </template>
     </ChristmasTree>
 
     <!-- Render the different things -->
@@ -16,7 +22,9 @@
         <!-- Add lights to each section -->
         <slot name="lights" />
         <!-- Add ornaments to each section -->
-        <slot name="ornaments" />
+        <slot v-if="!$slots.even && !$slots.odd && i % 2 === 1" name="ornaments" />
+        <slot v-if="i % 2 === 0" name="even" />
+        <slot v-else name="odd" />
       </div>
     </div>
   </div>
