@@ -4,6 +4,9 @@
       <template #lights>
         <slot name="lights" />
       </template>
+      <template #ornaments>
+        <slot name="ornaments" />
+      </template>
     </ChristmasTree>
 
     <!-- Render the different things -->
@@ -12,6 +15,8 @@
       <div v-for="i in size" class="relative rounded-full bg-green w-16 h-16 -m-2 flex justify-center items-center">
         <!-- Add lights to each section -->
         <slot name="lights" />
+        <!-- Add ornaments to each section -->
+        <slot name="ornaments" />
       </div>
     </div>
   </div>
